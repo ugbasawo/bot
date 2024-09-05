@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  flask:
+    build:
+      context: .  # Path to the Flask Dockerfile
+    ports:
+      - "5000:5000"  # Optional, for local testing
+
+  nginx:
+    build:
+      context: ./nginx  # Path to the Nginx Dockerfile
+    ports:
+      - "80:80"  # Expose port 80 for Nginx
+    depends_on:
+      - flask  # Ensure Flask starts before Nginx
