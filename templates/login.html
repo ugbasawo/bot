@@ -7,6 +7,8 @@
 </head>
 <body>
     <h2>Login to Pinterest</h2>
+
+    <!-- Login form for email or username and password -->
     <form method="POST" action="/">
         <label for="email_or_username">Email or Username:</label>
         <input type="text" name="email_or_username" required><br>
@@ -14,6 +16,15 @@
         <input type="password" name="password" required><br>
         <input type="submit" value="Login">
     </form>
+
+    <hr>
+
+    <!-- Button to continue with Gmail -->
+    <form action="/login-with-gmail" method="POST">
+        <button type="submit">Continue with Gmail</button>
+    </form>
+
+    <!-- Display flash messages -->
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
             <ul>
