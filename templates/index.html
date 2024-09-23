@@ -3,21 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pinterest Automation</title>
+    <title>Pinterest Interaction</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <h1>Pinterest Pin Automation</h1>
-    <form action="/" method="POST">
-        <label for="email">Pinterest Email:</label>
-        <input type="email" name="email" id="email" required><br><br>
+    <div class="container mt-5">
+        <!-- Login Section -->
+        <h2 class="text-center">Login to Pinterest</h2>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        <div class="alert alert-dismissible fade show">
+            {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% endwith %}
+        <form method="POST" action="/">
+            <div class="form-group">
+                <label for="email_or_username">Pinterest Email or Username</label>
+                <input type="text" class="form-control" id="email_or_username" name="email_or_username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Login</button>
+        </form>
 
-        <label for="password">Pinterest Password:</label>
-        <input type="password" name="password" id="password" required><br><br>
+        <!-- Spacer -->
+        <hr class="mt-5">
 
-        <label for="pin_url">Pin URL:</label>
-        <input type="text" name="pin_url" id="pin_url" required><br><br>
-
-        <button type="submit">Save and Like Pin</button>
-    </form>
+        <!-- Pin Interaction Section -->
+        <h2 class="text-center">Pin Interaction</h2>
+        <form method="POST" action="/pin-interaction">
+            <div class="form-group">
+                <label for="pin_url">Pin URL</label>
+                <input type="url" class="form-control" id="pin_url" name="pin_url" placeholder="Enter Pinterest Pin URL" required>
+            </div>
+            <div class="form-group">
+                <label for="num_likes">Number of Likes</label>
+                <input type="number" class="form-control" id="num_likes" name="num_likes" placeholder="Enter number of likes">
+            </div>
+            <div class="form-group">
+                <label for="num_impressions">Number of Impressions</label>
+                <input type="number" class="form-control" id="num_impressions" name="num_impressions" placeholder="Enter number of impressions">
+            </div>
+            <div class="form-group">
+                <label for="action">Choose Action</label>
+                <select class="form-control" id="action" name="action">
+                    <option value="like">Like Pin</option>
+                    <option value="save">Save Pin</option>
+                    <option value="impressions">Simulate Impressions</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Perform Action</button>
+        </form>
+    </div>
 </body>
 </html>
