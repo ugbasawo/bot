@@ -64,8 +64,8 @@ def simulate_impressions(page, pin_url, num_impressions):
 @app.route('/', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        pinterest_email_or_username = request.form['email_or_username']
-        pinterest_password = request.form['password']
+        pinterest_email_or_username = request.form.get('email_or_username')
+        pinterest_password = request.form.get('password')
         
         try:
             page = login_to_pinterest(pinterest_email_or_username, pinterest_password)
@@ -74,6 +74,18 @@ def login():
             flash("Login failed. Please try again.", "danger")
     
     return render_template('login.html')
+
+# New route for Gmail login (to be implemented using OAuth)
+@app.route('/login-with-gmail', methods=['POST'])
+def login_with_gmail():
+    # Here you would implement Google OAuth login, but for now, we'll just simulate it
+    try:
+        # Simulate successful Gmail login
+        flash("Logged in with Gmail successfully!", "success")
+        return redirect(url_for('pin_interaction'))
+    except Exception as e:
+        flash("Failed to log in with Gmail. Please try again.", "danger")
+        return redirect(url_for('login'))
 
 # Route to handle pin interactions after login
 @app.route('/pin-interaction', methods=['GET', 'POST'])
