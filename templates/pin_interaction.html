@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pin Interaction</title>
+</head>
+<body>
+    <h2>Interact with Pinterest Pin</h2>
+    <form method="POST" action="/pin-interaction">
+        <label for="pin_url">Pin URL:</label>
+        <input type="text" name="pin_url" required><br>
+        <label for="action">Action:</label>
+        <select name="action">
+            <option value="save">Save Pin</option>
+            <option value="like">Like Pin</option>
+            <option value="impressions">Simulate Impressions</option>
+        </select><br>
+        <label for="num_likes">Number of Likes:</label>
+        <input type="number" name="num_likes" value="1"><br>
+        <label for="num_impressions">Number of Impressions:</label>
+        <input type="number" name="num_impressions" value="1"><br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
